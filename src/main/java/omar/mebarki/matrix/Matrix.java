@@ -7,6 +7,8 @@ public interface Matrix {
 
     Matrix mult(Matrix matrix);
 
+    Matrix mult(double scalar);
+
     Matrix transpose();
 
     double getValueAt(int row, int col);

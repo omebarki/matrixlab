@@ -55,6 +55,17 @@ public class ArrayMatrix implements Matrix {
         return new ArrayMatrix(newArray);
     }
 
+    @Override
+    public Matrix mult(double scalar) {
+        final double[][] newArray = arrayMatrix.clone();
+        for (int i = 0; i < getNumRows(); i++) {
+            for (int j = 0; j < getNumColumns(); j++) {
+                newArray[i][j] = newArray[i][j] * scalar;
+            }
+        }
+        return new ArrayMatrix(newArray);
+    }
+
     private double multIJ(Matrix matrix, int i, int j) {
         double res = 0D;
         for (int k = 0; k < getNumColumns(); k++) {
@@ -95,5 +106,34 @@ public class ArrayMatrix implements Matrix {
     @Override
     public int getNumColumns() {
         return arrayMatrix[0].length;
+    }
+
+    @Override
+    public String toString() {
+        int cellMaxLength = 0;
+        for (int i = 0; i < getNumRows(); i++) {
+            for (int j = 0; j < getNumColumns(); j++) {
+                cellMaxLength = Math.max((arrayMatrix[i][j] + "").length(), cellMaxLength);
+            }
+        }
+        String result = "";
+        cellMaxLength += 3;
+        for (int i = 0; i < getNumRows(); i++) {
+            for (int j = 0; j < getNumColumns(); j++) {
+                result += rpad((arrayMatrix[i][j] + ""), cellMaxLength, Character.valueOf(' '));
+            }
+            if (i < getNumRows() - 1) {
+                result += "\n";
+            }
+        }
+        return result;
+    }
+
+    private String rpad(String str, int maxLength, Character pad) {
+        String result = str;
+        for (int i = 0; i < maxLength - str.length(); i++) {
+            result += pad;
+        }
+        return result;
     }
 }

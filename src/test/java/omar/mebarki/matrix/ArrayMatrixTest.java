@@ -92,4 +92,15 @@ class ArrayMatrixTest {
         Matrix matrix = new ArrayMatrix(20, 25);
         assertEquals(25, matrix.getNumColumns());
     }
+
+
+    @Test
+    void testToString() {
+        double a1[][] = {{23D, 3D, 5D},
+                {7D, 4545D, 6D},
+                {23D, 3D, 5D},
+                {123D,7D, 4D}};
+        Matrix m1 = new ArrayMatrix(a1);
+        System.out.println(m1);
+    }
 }
