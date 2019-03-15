@@ -1,9 +1,11 @@
 package omar.mebarki.matrix;
 
+import java.text.DecimalFormat;
 import java.util.Arrays;
 import java.util.function.ToDoubleBiFunction;
 
 public class ArrayMatrix implements Matrix {
+    private static final DecimalFormat DECIMAL_FORMAT = new DecimalFormat("#.#");
     private final double arrayMatrix[][];
 
     public ArrayMatrix(final int rowsCount, final int columnsCount) {
@@ -113,14 +115,14 @@ public class ArrayMatrix implements Matrix {
         int cellMaxLength = 0;
         for (int i = 0; i < getNumRows(); i++) {
             for (int j = 0; j < getNumColumns(); j++) {
-                cellMaxLength = Math.max((arrayMatrix[i][j] + "").length(), cellMaxLength);
+                cellMaxLength = Math.max(DECIMAL_FORMAT.format(arrayMatrix[i][j]).length(), cellMaxLength);
             }
         }
         String result = "";
         cellMaxLength += 3;
         for (int i = 0; i < getNumRows(); i++) {
             for (int j = 0; j < getNumColumns(); j++) {
-                result += rpad((arrayMatrix[i][j] + ""), cellMaxLength, Character.valueOf(' '));
+                result += rpad(DECIMAL_FORMAT.format(arrayMatrix[i][j]), cellMaxLength, Character.valueOf(' '));
             }
             if (i < getNumRows() - 1) {
                 result += "\n";
