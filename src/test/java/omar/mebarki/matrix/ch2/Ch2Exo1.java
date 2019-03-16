@@ -58,5 +58,16 @@ class Ch2Exo1 {
         System.out.println(result);
     }
 
+    @Test
+    void exo_1_f() {
+        Matrix result = A.add(B).transpose().add(C.mult(2D));
+        System.out.println(result);
+    }
+
+    @Test
+    void exo_1_g() {
+        Matrix result = A.mult(3).add(B.transpose().add(C).transpose());
+        System.out.println(result);
+    }
 
 }

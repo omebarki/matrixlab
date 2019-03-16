@@ -6,6 +6,11 @@ import java.util.function.ToDoubleBiFunction;
 
 public class ArrayMatrix implements Matrix {
     private static final DecimalFormat DECIMAL_FORMAT = new DecimalFormat("#.#");
+
+    static {
+        DECIMAL_FORMAT.setPositivePrefix(" ");
+    }
+
     private final double arrayMatrix[][];
 
     public ArrayMatrix(final int rowsCount, final int columnsCount) {
@@ -111,6 +116,18 @@ public class ArrayMatrix implements Matrix {
     }
 
     @Override
+    public double trace() {
+        if (getNumColumns() != getNumRows()) {
+            throw new IllegalStateException("Not a square matrix");
+        }
+        double traceResult = 0D;
+        for (int i = 0; i < getNumRows(); i++) {
+            traceResult += arrayMatrix[i][i];
+        }
+        return traceResult;
+    }
+
+    @Override
     public String toString() {
         int cellMaxLength = 0;
         for (int i = 0; i < getNumRows(); i++) {
@@ -119,7 +136,7 @@ public class ArrayMatrix implements Matrix {
             }
         }
         String result = "";
-        cellMaxLength += 3;
+        cellMaxLength += 2;
         for (int i = 0; i < getNumRows(); i++) {
             for (int j = 0; j < getNumColumns(); j++) {
                 result += rpad(DECIMAL_FORMAT.format(arrayMatrix[i][j]), cellMaxLength, Character.valueOf(' '));

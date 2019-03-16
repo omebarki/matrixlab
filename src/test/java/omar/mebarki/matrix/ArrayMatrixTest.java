@@ -96,7 +96,7 @@ class ArrayMatrixTest {
 
     @Test
     void testToString() {
-        double a1[][] = {{23D, 3D, 5D},
+        double a1[][] = {{-23D, 3D, 5D},
                 {7D, 4545D, 6D},
                 {23D, 3D, 5D},
                 {123D,7D, 4D}};

@@ -18,4 +18,6 @@ public interface Matrix {
     int getNumRows();
 
     int getNumColumns();
+
+    double trace();
 }
